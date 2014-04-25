@@ -22,7 +22,9 @@ int MandelbrotCalculate(complex c, int maxiter)
 int main()
 {
 	const int width = 78, height = 44, num_pixels = width*height;
-	cont complex center = (-0.7,0), span(2.7, -(4/3.0)*2.7*height/width);
+	const complex center = (-0.7,0), span(2.7, -(4/3.0)*2.7*height/width);
+	const complex begin = center-span/2.0;
+	const complex end = center+span/2.0;
 	const int maxiter = 100000;
 
 #pragma omp parallel for ordered schedule(dynamic)
@@ -47,4 +49,6 @@ int main()
 				std::puts("|");
 		}
 	}
+
+	return 0;
 }
